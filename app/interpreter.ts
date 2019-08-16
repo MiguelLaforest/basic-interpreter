@@ -1,20 +1,19 @@
 const $ = require("jquery");
 
-var REGISTERS_SIZE;
-var commandList;
-var registers;
-var program;
-var indexes;
-var functions;
-var labels;
-var index;
-var showFinalRegisters = true;
-var executionSpeed;
-// var showRegisters;
-var firstRun = true;
-var machine;
-var commandList = $("#instructions").html();
-var tempText;
+let REGISTERS_SIZE;
+let commandList = $("#instructions").html();
+let registers;
+let program;
+let indexes;
+let functions;
+let labels;
+let index;
+let showFinalRegisters = true;
+let executionSpeed;
+// let showRegisters;
+let firstRun = true;
+let machine;
+let tempText;
 $(window).ready(function() {
   $("#showExample").on("change", () => {
     $("#exampleInput").toggle();
@@ -102,7 +101,7 @@ class Machine {
     // let index = 0;
 
     // $('#interpreterOutput').append("Compiling program...");
-    var input = $("#codeInput").val();
+    let input = $("#codeInput").val();
     let result = input.split(/\r?\n/);
     console.log("result:", result);
     // $('#interpreterOutput').append(result[3]);
@@ -181,7 +180,7 @@ class Machine {
 }
 
 function runProgram(prog) {
-  for (let [index, label] of prog.entries()) {
+  for (let [ index, label ] of prog.entries()) {
     let L, opCode, L2;
     let r, s1, s2;
     let n;
