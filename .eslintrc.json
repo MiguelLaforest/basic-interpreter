@@ -1,0 +1,21 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "quote-props": "always"
+  },
+  "rules": {
+    "semi": "error",
+    "quote-props": ["error", "always"],
+    "spaced-comment": "error",
+    "sort-vars": "error",
+    "quotes": "error"
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  }
+}

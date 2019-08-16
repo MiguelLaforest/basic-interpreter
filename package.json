@@ -1,0 +1,20 @@
+{
+  "name": "interpreter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "sass": "^1.22.3",
+    "typescript": "^3.5.3"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.10"
+  },
+  "scripts": {
+    "build": "parcel build app/index.html --public-url ./ -d build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

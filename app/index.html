@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Interpreter</title>
+  <link rel="stylesheet" href="./interpreter.scss">
+</head>
+
+<body id="interpreter">
+  <form id="interpreterInput">
+    <!-- <div>
+      <label for="showRegisters">Show Registers: </label>
+      <input type="checkbox" name="showRegisters" id="showRegisters"> -->
+
+    <!-- <div>
+      <label for="executionSpeed">execution Speed: </label>
+      0<input id="executionSpeed" type="range" min="0" max="10" value="0">10
+    </div> -->
+
+    <!-- Commands <span id="showCommandList">?</span> -->
+
+    <!-- <label for="showExample">Example </label>
+      <input type="checkbox" name="showExample" id="showExample">
+    </div> -->
+    <div id="panels-container">
+      <div class="inputDiv">Commands List</div>
+      <div id="instructions">
+        <pre><h3>#===============================#
+  #====== LIST OF COMMANDS ======#
+  #===============================#</h3>
+  # L1 add r s1 s2 ==> r = s1 + s2
+  # L1 addi r s1 x ==> r = s1 + x
+  # L1 div r s1 s2 ==> r = s1 / s2
+  # L1 divi r s1 x ==> r = s1 / x
+  # L1 bez r L2 ==> branch to L2 if r == 0
+  # L1 bei r x L2 ==> branch to L2 if r == x
+  # L1 bnez r L2 ==> branch to L2 if r != 0
+  # L1 bnei r x L2 ==> branch to L2 if r != x
+  # L1 bltz r L2 ==> branch to L2 if r < 0 
+  # L1 blti r x L2==> branch to L2 if r < x 
+  # L1 blez r L2==> branch to L2 if r <= 0 
+  # L1 blei r x L2==> branch to L2 if r <= x 
+  # L1 bgtz r L2==> branch to L2 if r > 0
+  # L1 bgti r x L2 ==> branch to L2 if r > x
+  # L1 bgez r L2 ==> branch to L2 if r >= 0
+  # L1 bgei r x L2 ==> branch to L2 if r >= x
+  # L1 cube r s1 ==> r = s1 ^ 3
+  # L1 mul r s1 s2 ==> r = s1 * s2
+  # L1 muli r s1 x ==> r = s1 * x
+  # L1 pow r s1 s2 ==> r = s1 ^ s2
+  # L1 powi r s1 x ==> r = s1 ^ x
+  # L1 squ r s1 ==> r = s1 ^ 2
+  # L1 sub r s1 s2 ==> r = s1 - s2
+  # L1 subi r s1 x ==> r = s1 - x
+  # L1 out r s1 s2 ==> print r
+  # L1 sto r s1 s2 ==> r = x
+        </pre>
+      </div>
+      <div id="command-example">Example</div>
+      <div name="exampleInput" id="exampleInput">
+        <pre>
+  # only the code between start and ".END" will be executed
+  #---------Start------------
+  blah sto 5 3
+  f0 divi 22 24 3
+  f1 mul 21 21 23
+  f2 pow 10 2 5
+  f3 powi 10 2 5
+  f4 cube 10 2
+  
+  # function allo1()
+  allo1~
+  a0 divi 22 24 3
+  a1 mul 21 21 22
+  a3 sto 14 0
+  a4 bnei 14 5 allo2
+  a5 sub 31 30 22
+  ~allo1
+  
+  f5 add 9 20 21
+  f6 sto 14 0
+  f7 bnei 14 5 allo1
+  f8 subi 30 28 22
+  
+  #uncomment to show of all the functionalities
+  reset0 sto 0 0
+  toShowOffFunc bez 0 showOffFunc
+  .END
+  
+  #----------- Function Section -----------#
+  # function showOffFunc()
+  showOffFunc~
+  add add 3 31 5
+  addi addi 4 12 8
+  div div 5 14 2
+  divi divi 6 26 2
+  bez bez 7 add
+  bei bei 8 6 allo1
+  bnez bnez 9 sub
+  bnei bnei 10 19 val14
+  Bltz bltz 11 bei
+  blti blti 12 8 f0
+  blez blez 13 f1
+  blei blei 14 7 f3
+  Bgtz bgtz 15 allo1
+  bgti bgti 16 23 f8
+  bgez bgez 17 f5
+  bgei bgei 18 13 val14
+  cube cube 19 1
+  mul mul 20 2 3
+  muli muli 21 3 2
+  pow pow 22 2 1
+  powi powi 23 1 3
+  squ squ 24 2
+  sub sub 25 27 15
+  subi subi 26 30 7
+  sto sto 27 1234
+  out out 27
+  ~showOffFunc
+  
+  val14 out 14
+  
+  # function allo2()
+  allo2~
+  t0 divi 22 24 3
+  t1 mul 27 21 10
+  t3 sto 14 7
+  t4 bnei 14 5 val14
+  t5 subi 30 28 22
+  ~allo2
+        </pre>
+      </div>
+      <div id="example-code">Input</div>
+      <textarea name="codeInput" id="codeInput">
+  # only the code between start and ".END" will be executed
+  # the registers are initialize with a integer equivalent to their index
+  # i.e., from 0 to 31
+  #---------Start------------
+  
+  .END
+  
+  #----------- Function Section -----------#
+  
+  </textarea>
+    </div>
+    <div class="inputDiv">&nbsp;</div>
+    <div class="btn-container">
+      <input class="btn" id="interpreterRun" type="submit" value="Run">
+    </div>
+  </form>
+  <div id="outputDiv">
+    <div>
+      <label for="showRegisters">Show Registers: </label>
+      <input type="checkbox" name="showRegisters" id="showRegisters">
+    </div>
+    <div id="interpreterOutput">
+      Output...
+    </div>
+  </div>
+
+  <script src="./interpreter.ts"></script>
+</body>
+
+</html>
